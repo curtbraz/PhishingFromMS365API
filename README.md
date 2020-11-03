@@ -7,9 +7,9 @@ The scripts will loop through each row of a spreadsheet and, depending on which 
 
 Thanks to the Black Hills Security folks (Beau Bullock & Michael Felch) for the inspiration with their GSuite Mailsniper Calendar Injection tool and techniqe!
 
-## Sending Calendar Events
+## Sending Calendar Events / Emails
 
-Clone this repo and edit the python variables. Update the Template spreadsheet with targets.
+Clone this repo and edit the relevant python variables. Update the Template spreadsheet with targets.
 
 Authentication instruction taken from  https://pypi.org/project/O365/#authentication:
 
