@@ -97,7 +97,7 @@ while rowselector <= row_count:
   ## Blank Column for Updating UUID
   id_cell = 'A' + str(rowselector)
   ## Update With Column of Name of Recipient
-  name_cell = 'H' + str(rowselector)
+  name_cell = 'E' + str(rowselector)
   uniqueid = str(uuid.uuid4())
   sheet[id_cell] = uniqueid
   email = sheet[cur_cell].value

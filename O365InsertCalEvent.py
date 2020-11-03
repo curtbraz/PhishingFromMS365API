@@ -30,7 +30,7 @@ from O365 import Account
 
         #Microsoft Graph - Calendars - Calendars.ReadWrite
         #Microsoft Graph - Mail - Mail.Send
-        #Microsoft Graph - Mail - User.Read
+        #Microsoft Graph - User - User.Read
 
 # 9) Then you need to login for the first time to get the access token that will grant access to the user resources.
 
