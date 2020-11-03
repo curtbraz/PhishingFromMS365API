@@ -26,14 +26,14 @@ Authentication instruction taken from  https://pypi.org/project/O365/#authentica
 7) Under Api Permissions:
 
     When authenticating "on behalf of a user":
-            1. Add the delegated permissions for Microsoft Graph you want (see scopes).
+            Add the delegated permissions for Microsoft Graph you want (see scopes).
             
-            2. It is highly recommended to add "offline_access" permission. If not the user you will have to re-authenticate every hour.
+            It is highly recommended to add "offline_access" permission. If not the user you will have to re-authenticate every hour.
             
     When authenticating "with your own identity":
-            1. Add the application permissions for Microsoft Graph you want.
+            Add the application permissions for Microsoft Graph you want.
             
-            2. Click on the Grant Admin Consent button (if you have admin permissions) or wait until the admin has given consent to your application.
+            Click on the Grant Admin Consent button (if you have admin permissions) or wait until the admin has given consent to your application.
             
  8) To read / send emails AND inject calendar events use:
 
