@@ -42,4 +42,4 @@ Authentication instruction taken from  https://pypi.org/project/O365/#authentica
         Microsoft Graph - Mail - Mail.ReadWrite
         Microsoft Graph - User - User.Read
 
-# 9) Then you need to login for the first time to get the access token that will grant access to the user resources.
+ 9) Then you need to login for the first time to get the access token that will grant access to the user resources.
