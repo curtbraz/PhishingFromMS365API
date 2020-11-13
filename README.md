@@ -1,4 +1,4 @@
-# PhishingFromSpreadsheets
+# Phishing From MS365 Graph API
 A Couple of Python Scripts Leveraging MS365's GraphAPI to Send Custom Calendar Events / Emails from Cheap O365 Accounts
 
 This project uses O365 Python project @ https://pypi.org/project/O365/#calendar. I created these for a Phishing engagement I was on, where I was asked to send customized calendar meeting invites as well as emails using a template to over 2,000 individuals. The invites and emails needed to be from one sender to one recipient and had to include unique links for tracking/analytics purposes. These scripts both leverage the Microsoft/Office 365 Graph API. I used GoDaddy for my domains and it was easy to sign up for a cheap O365 account through them for this purpose.
