@@ -5,6 +5,8 @@ This project uses O365 Python project @ https://pypi.org/project/O365/#calendar.
 
 The scripts will loop through each row of a spreadsheet and, depending on which script, will either send a calendar event set to the nearest 30 minutes (default) or email with an HTML body to each recipient on the sheet. It can also pull in other columns, such as the recipients name, and can replace the HTML template in memory to customize the experience for spear-phishing purposes. All in all it's a pretty simple set of scripts, but I'm sharing in case it helps others with a simliar task!
 
+I also have one script, "O365SendSingleEmailFormBody.py" that uses a new phishing technique I discovered where you can embed an HTML form for phishing credentials directly into the body of an email. Instead of mass-mailings this script is meant to send to a single recipient, but can be altered easily by looking at the others as examples.
+
 Thanks to the Black Hills Security folks (Beau Bullock & Michael Felch) for the inspiration with their GSuite Mailsniper Calendar Injection tool and techniqe!
 
 ## Sending Calendar Events / Emails
