@@ -47,8 +47,7 @@ from openpyxl import load_workbook
 rowselector = 2
 
 ## THIS IS THE NAME/PATH OF YOUR EXCEL FILE
-##fn = 'CurtisTestList.xlsx'
-fn = 'AllXOEmails.xlsx'
+fn = 'CurtisTestList.xlsx'
 
 ## CHANGE THIS TO THE SHEET IN QUESTION
 wb = load_workbook(filename = fn)
