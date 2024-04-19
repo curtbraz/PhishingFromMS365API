@@ -36,7 +36,7 @@ from O365 import Account
 # 9) Then you need to login for the first time to get the access token that will grant access to the user resources.
 
 ## ENTER YOUR APPLICATION ID AND SECRET KEY BELOW
-credentials = ('APPLICATION/CLIENT ID', 'SECRET')
+credentials = ('74f98c5b-cdc9-.....', 'J-a8Q~fdW7......')
 
 account = Account(credentials)
 if account.authenticate(scopes=['basic', 'message_all']):
@@ -47,38 +47,42 @@ from openpyxl import load_workbook
 rowselector = 2
 
 ## THIS IS THE NAME/PATH OF YOUR EXCEL FILE
-fn = 'Template.xlsx'
+##fn = 'CurtisTestList.xlsx'
+fn = 'AllXOEmails.xlsx'
 
 ## CHANGE THIS TO THE SHEET IN QUESTION
 wb = load_workbook(filename = fn)
-sheet = wb['Sheet1']
+sheet = wb['TargetList']
 
 row_count = sheet.max_row
 
 # Function for Creating Calendar Event
-def send_email(account,email,row,name):
+def send_email(account,email,row,name,dept,div,tit):
     m = account.new_message()
     # This Automatically Adds the Email from the Spreadsheet as the Recipient
     m.to.add(email)
     ## Subject of the Email
-    m.subject = 'Test Subject'
+    m.subject = dept + ' Team!'
     
     ## Filename/Path of HTML Template for Email Body
-    with open('NAME_OF_YOUR_HTML_TEMPLATE.html', 'r') as file:
+    with open('GiftCard.html', 'r') as file:
         data = file.read().replace('\n', '')
 
     ## REGEX to Find and Replace HTML Value with Spreadsheet Name. Edit your HTML Template to include <STARTNAME><ENDNAME> Anywhere you Want it Replaced
     newdata = re.sub('<STARTNAME>.*?<ENDNAME>',name,data, flags=re.DOTALL)
     ## URL to Fake Landing Page
-    url = 'https://.../?id=' + row
+    url = 'https://auth.xtenops.com/u/login/?redir=xogift&id=' + str(row)
     ## Path to Tracking Pixel (Dynamic Content)
-    trackingurl = 'https://.../emailopens.php/?id=' + row
+   # trackingurl = 'https://.../emailopens.php/?id=' + str(row)
     ## REGEX to Find and Replace URL Value in HTML Template, Like the Name Field Above. Change in Template to Match.
     newdata2 = re.sub('<STARTURL>.*?<ENDURL>',url,newdata, flags=re.DOTALL)
     ## REGEX to Find and Replace Tracking Pixel URL Value in HTML Template, Like the Name Field Above. Change in Template to Match.
-    newdata3 = re.sub('<TRACKSTART>.*?<TRACKEND>',trackingurl,newdata2, flags=re.DOTALL)
+    #newdata3 = re.sub('<TRACKSTART>.*?<TRACKEND>',trackingurl,newdata2, flags=re.DOTALL)
+    newdata3 = re.sub('<STARTDIVISION>.*?<ENDDIVISION>',div,newdata2, flags=re.DOTALL)
+    newdata4 = re.sub('<STARTDEPARTMENT>.*?<ENDDEPARTMENT>',dept,newdata3, flags=re.DOTALL)
+    newdata5 = re.sub('<STARTTITLE>.*?<ENDTITLE>',tit,newdata4, flags=re.DOTALL)
     
-    m.body = newdata3 
+    m.body = newdata5 
     m.send()
     
     # Prints to Terminal
@@ -91,18 +95,28 @@ while rowselector <= row_count:
   from datetime import datetime
   now = datetime.now()
   ## Update With Column of Email Addresses
-  cur_cell = 'B' + str(rowselector)
+  cur_cell = 'C' + str(rowselector)
   ## Blank Column for Updating Time Sent
-  update_cell = 'D' + str(rowselector)
+  update_cell = 'I' + str(rowselector)
   ## Blank Column for Updating UUID
   id_cell = 'A' + str(rowselector)
   ## Update With Column of Name of Recipient
-  name_cell = 'E' + str(rowselector)
-  uniqueid = str(uuid.uuid4())
-  sheet[id_cell] = uniqueid
+  name_cell = 'D' + str(rowselector)
+  ## Update With Column of Department
+  department_cell = 'G' + str(rowselector)
+  ## Update With Column of Division
+  division_cell = 'H' + str(rowselector)
+  ## Update With Column of Title
+  title_cell = 'F' + str(rowselector)
+  #uniqueid = str(uuid.uuid4())
+  #sheet[id_cell] = uniqueid
   email = sheet[cur_cell].value
   namevalue = sheet[name_cell].value
-  send_email(account,email,uniqueid,namevalue)
+  uniqueid = sheet[id_cell].value
+  department = sheet[department_cell].value
+  division = sheet[division_cell].value
+  title = sheet[title_cell].value
+  send_email(account,email,uniqueid,namevalue,department,division,title)
   sheet[update_cell] = now.strftime("%m/%d/%Y, %H:%M:%S")
   wb.save(fn)
   rowselector += 1
